@@ -1,0 +1,881 @@
+/* ============================================
+   Doctor Link — Registration Styles
+   ============================================ */
+
+/* --- Registration Screen Layout --- */
+.reg-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--duration-slow) var(--ease-out),
+              visibility var(--duration-slow);
+}
+
+.reg-screen.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* --- Registration Header --- */
+.reg-header {
+  flex-shrink: 0;
+  padding: var(--space-md) var(--space-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 2;
+}
+
+/* --- Progress Indicator --- */
+.reg-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.reg-step-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.reg-progress-track {
+  width: 80px;
+  height: 3px;
+  background: var(--color-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.reg-progress-fill {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 2px;
+  transition: width var(--duration-normal) var(--ease-out);
+}
+
+/* --- Registration Main --- */
+.reg-main {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-xl) var(--space-3xl);
+}
+
+.reg-container {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* --- Registration Steps --- */
+.reg-step {
+  display: none;
+}
+
+.reg-step.active {
+  display: block;
+  animation: reg-step-enter 0.3s var(--ease-out) both;
+}
+
+@keyframes reg-step-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Step Heading --- */
+.reg-step-heading {
+  margin-bottom: var(--space-xl);
+}
+
+.reg-step-title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.reg-step-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+/* --- Registration Footer --- */
+.reg-footer {
+  flex-shrink: 0;
+  padding: var(--space-md) var(--space-xl);
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+}
+
+.reg-footer .btn-primary {
+  max-width: 480px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* --- Photo Upload --- */
+.photo-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.photo-preview {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 2px dashed var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  transition: border-color var(--duration-fast);
+}
+
+.photo-preview.has-photo {
+  border-style: solid;
+  border-color: var(--color-accent-light);
+}
+
+.photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-accent-dark);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: color var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-text:hover {
+  color: var(--color-accent);
+}
+
+.btn-text--danger {
+  color: #d94a4a;
+}
+
+.btn-text--danger:hover {
+  color: #c43c3c;
+}
+
+.input-optional {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+/* --- Searchable Select (Specialization) --- */
+.select-search {
+  position: relative;
+}
+
+.select-search .input-field {
+  padding-right: 36px;
+}
+
+.select-chevron {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.select-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.select-option {
+  padding: 10px var(--space-md);
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: background var(--duration-fast);
+}
+
+.select-option:hover {
+  background: var(--color-surface);
+}
+
+.select-option.selected {
+  color: var(--color-accent-dark);
+  font-weight: 500;
+}
+
+.select-option--empty {
+  color: var(--color-text-muted);
+  font-style: italic;
+  cursor: default;
+}
+
+/* --- Native Select Styling --- */
+.select-native {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238a8a8a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+/* --- Textarea --- */
+.textarea-field {
+  height: auto;
+  min-height: 80px;
+  padding: var(--space-md);
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* --- Practice Type Cards --- */
+.practice-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.practice-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg) var(--space-md);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color var(--duration-fast),
+              background var(--duration-fast),
+              box-shadow var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.practice-card:hover {
+  border-color: var(--color-accent-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.practice-card.selected {
+  border-color: var(--color-accent);
+  background: var(--color-selected-bg);
+}
+
+.practice-card-icon {
+  color: var(--color-accent-dark);
+  transition: color var(--duration-fast);
+}
+
+.practice-card.selected .practice-card-icon {
+  color: var(--color-accent);
+}
+
+.practice-card-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* --- Facility Section --- */
+.facility-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-accent-subtle);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-md);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-accent-dark);
+}
+
+.facility-list {
+  margin-bottom: var(--space-sm);
+}
+
+.facility-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-md);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  margin-bottom: var(--space-sm);
+  transition: border-color var(--duration-fast),
+              background var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.facility-item:hover {
+  border-color: var(--color-accent-light);
+}
+
+.facility-item.selected {
+  border-color: var(--color-accent);
+  background: var(--color-selected-bg);
+}
+
+.facility-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.facility-item-name {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.facility-item-detail {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.facility-item-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: var(--space-md);
+  color: transparent;
+  transition: border-color var(--duration-fast),
+              background var(--duration-fast),
+              color var(--duration-fast);
+}
+
+.facility-item-check svg {
+  width: 14px;
+  height: 14px;
+}
+
+.facility-item.selected .facility-item-check {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.facility-empty {
+  padding: var(--space-lg);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-sm);
+}
+
+/* --- Add Facility Button --- */
+.add-facility-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-md);
+  border: 1.5px dashed var(--color-accent-light);
+  border-radius: var(--radius-sm);
+  background: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-accent-dark);
+  cursor: pointer;
+  transition: border-color var(--duration-fast),
+              background var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+  margin-top: var(--space-sm);
+}
+
+.add-facility-btn:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-subtle);
+}
+
+/* --- Add Facility Form --- */
+.add-facility-form {
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin-top: var(--space-md);
+  background: var(--color-surface);
+}
+
+.add-facility-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+}
+
+.add-facility-actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.add-facility-actions .btn-primary,
+.add-facility-actions .btn-secondary {
+  flex: 1;
+  height: 40px;
+  font-size: 0.875rem;
+}
+
+.btn-secondary {
+  height: 40px;
+  padding: 0 var(--space-md);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: border-color var(--duration-fast),
+              background var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-accent-light);
+  background: var(--color-surface);
+}
+
+/* --- Review Sections --- */
+.review-section {
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: var(--space-md);
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.review-header h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.review-edit-btn {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-accent-dark);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: inherit;
+  transition: color var(--duration-fast),
+              background var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.review-edit-btn:hover {
+  color: var(--color-accent);
+  background: var(--color-accent-subtle);
+}
+
+.review-body {
+  padding: var(--space-md);
+}
+
+.review-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.review-field:last-child {
+  border-bottom: none;
+}
+
+.review-label {
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.review-value {
+  font-size: 0.9375rem;
+  color: var(--color-text);
+}
+
+.review-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 4px;
+}
+
+.review-facilities {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: 4px;
+}
+
+.review-facility-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: var(--space-sm);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+}
+
+.review-facility-item strong {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.review-facility-item span {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* ============================================
+   Registration Complete Screen
+   ============================================ */
+.reg-complete-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--duration-slow) var(--ease-out),
+              visibility var(--duration-slow);
+}
+
+.reg-complete-screen.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.success-content {
+  text-align: center;
+  padding: var(--space-xl);
+  max-width: 440px;
+  width: 100%;
+}
+
+/* Animated check */
+.success-check {
+  width: 80px;
+  height: 80px;
+  color: var(--color-accent);
+  margin: 0 auto var(--space-xl);
+}
+
+.success-check svg {
+  width: 100%;
+  height: 100%;
+}
+
+.success-check circle {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+
+.success-check path {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+}
+
+.reg-complete-screen.visible .success-check circle {
+  animation: draw-stroke 0.6s var(--ease-out) 0.15s forwards;
+}
+
+.reg-complete-screen.visible .success-check path {
+  animation: draw-stroke 0.4s var(--ease-out) 0.55s forwards;
+}
+
+@keyframes draw-stroke {
+  to { stroke-dashoffset: 0; }
+}
+
+.success-title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.02em;
+}
+
+.success-desc {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xl);
+}
+
+/* Demo ID card */
+.demo-id-card {
+  background: var(--color-accent-subtle);
+  border: 1.5px solid var(--color-accent-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.demo-id-label {
+  display: block;
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  margin-bottom: var(--space-sm);
+}
+
+.demo-id-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.demo-id-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-accent-dark);
+  letter-spacing: 0.04em;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border: 1.5px solid var(--color-accent-light);
+  border-radius: 6px;
+  background: var(--color-bg);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-accent-dark);
+  cursor: pointer;
+  transition: background var(--duration-fast),
+              border-color var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.copy-btn:hover {
+  background: var(--color-accent-subtle);
+  border-color: var(--color-accent);
+}
+
+.demo-disclaimer {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  max-width: 320px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.complete-footer {
+  padding: var(--space-lg) var(--space-xl);
+  text-align: center;
+}
+
+.complete-footer p {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* ============================================
+   Responsive — Desktop
+   ============================================ */
+@media (min-width: 640px) {
+  .reg-step-title {
+    font-size: 1.5rem;
+  }
+
+  .reg-progress-track {
+    width: 100px;
+  }
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .reg-screen {
+    transition-duration: 0.01ms;
+  }
+
+  .reg-step.active {
+    animation: none;
+  }
+
+  .reg-complete-screen {
+    transition-duration: 0.01ms;
+  }
+
+  .reg-complete-screen.visible .success-check circle,
+  .reg-complete-screen.visible .success-check path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ============================================
+   Patient Registration Screen
+   ============================================ */
+
+/* --- Patient Registration Layout --- */
+.pat-reg-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--duration-slow) var(--ease-out),
+              visibility var(--duration-slow);
+}
+
+.pat-reg-screen.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* --- Patient Registration Complete Screen --- */
+.pat-reg-complete-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--duration-slow) var(--ease-out),
+              visibility var(--duration-slow);
+}
+
+.pat-reg-complete-screen.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Animated checkmark for patient complete screen */
+.pat-reg-complete-screen.visible .success-check circle {
+  animation: draw-stroke 0.6s var(--ease-out) 0.15s forwards;
+}
+
+.pat-reg-complete-screen.visible .success-check path {
+  animation: draw-stroke 0.4s var(--ease-out) 0.55s forwards;
+}
+
+/* --- Reduced Motion: Patient screens --- */
+@media (prefers-reduced-motion: reduce) {
+  .pat-reg-screen {
+    transition-duration: 0.01ms;
+  }
+
+  .pat-reg-complete-screen {
+    transition-duration: 0.01ms;
+  }
+
+  .pat-reg-complete-screen.visible .success-check circle,
+  .pat-reg-complete-screen.visible .success-check path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

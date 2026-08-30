@@ -1,0 +1,422 @@
+/* ============================================
+   Doctor Link — Patient Discovery Styles
+   ============================================ */
+
+/* --- Screen Layout --- */
+.discovery-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 20; /* Above dashboard */
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--duration-normal) var(--ease-out),
+              visibility var(--duration-normal),
+              transform var(--duration-normal) var(--ease-out);
+  transform: translateY(10px);
+}
+
+.discovery-screen.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* --- Header --- */
+.disc-header {
+  flex-shrink: 0;
+  padding: var(--space-md) var(--space-md) var(--space-md) var(--space-sm);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  z-index: 2;
+}
+
+.disc-header-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.disc-back-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.disc-back-btn:hover {
+  background: var(--color-surface);
+}
+
+.disc-header-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.disc-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.disc-location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* --- Search --- */
+.disc-search-wrap {
+  position: relative;
+  margin: 0 var(--space-sm);
+}
+
+.disc-search-icon {
+  position: absolute;
+  left: var(--space-md);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.disc-search-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--space-md) 0 44px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+  outline: none;
+}
+
+.disc-search-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-subtle);
+  background: var(--color-bg);
+}
+
+/* --- Filters --- */
+.disc-filters {
+  display: flex;
+  gap: var(--space-sm);
+  padding: 0 var(--space-sm);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.disc-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.disc-filter-btn {
+  white-space: nowrap;
+  padding: 8px 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  border-radius: 20px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.disc-filter-btn.active {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+
+/* --- Main Content --- */
+.disc-main {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.disc-scroll-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* --- Cards --- */
+.disc-card {
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.disc-card:hover {
+  border-color: var(--color-accent-light);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.disc-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.disc-card-subtitle {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.disc-card-loc {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.disc-card-cta {
+  align-self: flex-start;
+  margin-top: var(--space-sm);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-accent-dark);
+}
+
+/* --- Empty States --- */
+.disc-empty {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-md);
+}
+
+.disc-empty-icon {
+  color: var(--color-text-muted);
+  opacity: 0.4;
+  margin-bottom: var(--space-md);
+}
+
+.disc-empty-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.disc-empty-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.disc-empty-btn {
+  display: inline-flex;
+  padding: 10px 20px;
+  border: 1.5px solid var(--color-accent);
+  background: var(--color-bg);
+  color: var(--color-accent-dark);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+
+.disc-empty-btn:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* --- Facility Details Specifics --- */
+.fac-detail-hero {
+  padding: var(--space-xl) var(--space-lg);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.fac-detail-type {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-xs);
+}
+
+.fac-detail-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+  line-height: 1.2;
+}
+
+.fac-section {
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+  padding: var(--space-lg);
+}
+
+.fac-section-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.fac-section-content {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* --- Doctor Profile Specifics --- */
+.doc-prof-hero {
+  padding: var(--space-xl) var(--space-lg);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.doc-prof-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--color-accent-subtle);
+  color: var(--color-accent-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+.doc-prof-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.doc-prof-spec {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-accent-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.doc-prof-id {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  margin-bottom: var(--space-md);
+}
+
+.doc-prof-actions {
+  display: flex;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.doc-prof-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background var(--duration-fast);
+}
+
+.doc-prof-btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+}
+
+.doc-prof-btn-primary:hover {
+  background: var(--color-accent-dark);
+}
+
+.doc-prof-btn-secondary {
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
+}
+
+.doc-prof-btn-secondary:hover {
+  background: var(--color-surface);
+}
+
+/* --- Global Search Specifics --- */
+.gs-section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-xs);
+  padding-left: var(--space-xs);
+}
+
+.gs-results-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Desktop */
+@media (min-width: 640px) {
+  .disc-header {
+    padding: var(--space-lg) var(--space-xl);
+  }
+  .disc-search-wrap, .disc-filters {
+    margin: 0;
+    max-width: 600px;
+  }
+}

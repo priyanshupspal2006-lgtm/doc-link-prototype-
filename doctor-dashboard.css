@@ -1,0 +1,585 @@
+/* ============================================
+   Doctor Link — Doctor Dashboard Styles
+   ============================================ */
+
+/* --- Dashboard Screen Layout --- */
+.doc-dashboard-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 14;
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--duration-slow) var(--ease-out),
+              visibility var(--duration-slow);
+}
+
+.doc-dashboard-screen.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* --- Dashboard Header --- */
+.doc-dash-header {
+  flex-shrink: 0;
+  padding: var(--space-md) var(--space-xl);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.doc-dash-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.doc-dash-greeting {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doc-dash-location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.doc-dash-location svg {
+  flex-shrink: 0;
+}
+
+.doc-dash-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.doc-dash-icon-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background-color var(--duration-fast),
+              color var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+.doc-dash-icon-btn:hover {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.doc-dash-icon-btn:active {
+  background: var(--color-accent-subtle);
+}
+
+.doc-dash-icon-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.doc-dash-avatar-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent-light);
+  overflow: hidden;
+  background: var(--color-accent-subtle);
+  color: var(--color-accent-dark);
+}
+
+.doc-dash-avatar-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.doc-dash-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* --- Dashboard Main Content --- */
+.doc-dash-main {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80px;
+}
+
+.doc-dash-scroll-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-lg) var(--space-xl);
+}
+
+/* --- Practice Status Toggle --- */
+.doc-status-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-xl);
+  box-shadow: var(--shadow-card);
+}
+
+.doc-status-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.doc-status-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.doc-status-desc {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* Toggle Switch UI */
+.doc-toggle-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.doc-toggle-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  transition: color var(--duration-fast);
+}
+
+.doc-toggle {
+  appearance: none;
+  width: 44px;
+  height: 24px;
+  background: var(--color-border);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: background var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.doc-toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: 50%;
+  transition: transform var(--duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.doc-toggle:checked {
+  background: var(--color-success, #10b981);
+}
+
+.doc-toggle:checked::after {
+  transform: translateX(20px);
+}
+
+.doc-toggle:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-accent);
+}
+
+.doc-toggle-wrap.is-open .doc-toggle-label {
+  color: var(--color-success, #10b981);
+}
+
+/* --- Today's Overview Grid --- */
+.doc-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.doc-stat-card {
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: var(--shadow-card);
+}
+
+.doc-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.doc-stat-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* --- Quick Actions --- */
+.doc-dash-section-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.01em;
+}
+
+.doc-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.doc-action-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg) var(--space-sm);
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color var(--duration-fast),
+              background var(--duration-fast),
+              box-shadow var(--duration-fast),
+              transform var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--shadow-card);
+}
+
+.doc-action-card:hover {
+  border-color: var(--color-accent-light);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.doc-action-card:active {
+  transform: scale(0.97);
+  box-shadow: var(--shadow-card-active);
+}
+
+.doc-action-card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.doc-action-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-subtle);
+  color: var(--color-accent-dark);
+  transition: background var(--duration-fast),
+              color var(--duration-fast);
+}
+
+.doc-action-card:hover .doc-action-icon {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.doc-action-label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* --- Dashboard Cards (Sections) --- */
+.doc-dash-card {
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: var(--space-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.doc-dash-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.doc-dash-card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.doc-dash-card-body {
+  padding: var(--space-lg) var(--space-md);
+}
+
+/* --- Empty State --- */
+.doc-dash-empty-state {
+  text-align: center;
+  padding: var(--space-sm) 0;
+}
+
+.doc-dash-empty-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--space-md);
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.doc-dash-empty-text {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* --- Queue Layout Reserve --- */
+.doc-queue-reserve {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.doc-queue-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.doc-queue-label {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.doc-queue-value {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* --- Practice Info Details --- */
+.doc-practice-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.doc-practice-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.doc-practice-label {
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.doc-practice-value {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+/* --- Bottom Navigation --- */
+.doc-dash-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  z-index: 15;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.doc-dash-nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 0 8px;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--duration-fast);
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+.doc-dash-nav-item:hover {
+  color: var(--color-text-secondary);
+}
+
+.doc-dash-nav-item.active {
+  color: var(--color-accent-dark);
+}
+
+.doc-dash-nav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 0 0 2px 2px;
+}
+
+.doc-dash-nav-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.doc-dash-nav-label {
+  line-height: 1;
+}
+
+/* --- Coming Next Toast --- */
+.doc-dash-toast {
+  position: fixed;
+  bottom: 88px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--color-text);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+  z-index: 20;
+  white-space: nowrap;
+}
+
+.doc-dash-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+/* ============================================
+   Responsive — Desktop
+   ============================================ */
+@media (min-width: 640px) {
+  .doc-dash-greeting {
+    font-size: 1.375rem;
+  }
+
+  .doc-dash-scroll-content {
+    padding: var(--space-xl) var(--space-xl) var(--space-2xl);
+  }
+
+  .doc-action-card {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .doc-action-label {
+    font-size: 0.75rem;
+  }
+
+  .doc-action-icon {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .doc-dash-scroll-content {
+    max-width: 720px;
+  }
+
+  .doc-dash-bottom-nav {
+    max-width: 720px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    border: 1px solid var(--color-border);
+    border-bottom: none;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  .doc-dash-toast {
+    bottom: 96px;
+  }
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .doc-dashboard-screen,
+  .doc-dash-toast,
+  .doc-action-card,
+  .doc-toggle::after {
+    transition-duration: 0.01ms;
+  }
+}

@@ -1,0 +1,2232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Link</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="registration.css">
+  <link rel="stylesheet" href="patient-dashboard.css">
+  <link rel="stylesheet" href="doctor-dashboard.css">
+  <link rel="stylesheet" href="patient-discovery.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Launch Screen -->
+  <div id="launch-screen" class="launch-screen">
+    <div class="launch-content">
+      <div class="launch-logo">
+        <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="18" y="8" width="12" height="32" rx="3" fill="currentColor"/>
+          <rect x="8" y="18" width="32" height="12" rx="3" fill="currentColor"/>
+        </svg>
+      </div>
+      <h1 class="launch-title">Doctor Link</h1>
+      <p class="launch-tagline">Healthcare, connected.</p>
+    </div>
+  </div>
+
+  <!-- Role Selection Screen -->
+  <div id="role-screen" class="role-screen" aria-hidden="true">
+    <header class="role-header">
+      <div class="role-brand">
+        <svg class="role-brand-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="18" y="8" width="12" height="32" rx="3" fill="currentColor"/>
+          <rect x="8" y="18" width="32" height="12" rx="3" fill="currentColor"/>
+        </svg>
+        <span class="role-brand-name">Doctor Link</span>
+      </div>
+    </header>
+
+    <main class="role-main">
+      <div class="role-prompt">
+        <h2 class="role-heading">How will you use Doctor Link?</h2>
+        <p class="role-subheading">Select your role to get started.</p>
+      </div>
+
+      <div class="role-choices">
+        <!-- Doctor Card -->
+        <button class="role-card" id="role-doctor" type="button" aria-label="Continue as Doctor">
+          <div class="role-card-icon-wrap">
+            <svg class="role-card-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Stethoscope-inspired icon -->
+              <circle cx="32" cy="20" r="10" stroke="currentColor" stroke-width="3" fill="none"/>
+              <path d="M32 30v8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <path d="M24 42a8 8 0 0 0 16 0" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <circle cx="32" cy="20" r="3" fill="currentColor"/>
+            </svg>
+          </div>
+          <span class="role-card-label">Doctor</span>
+          <span class="role-card-desc">I provide medical care</span>
+          <div class="role-card-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Patient Card -->
+        <button class="role-card" id="role-patient" type="button" aria-label="Continue as Patient">
+          <div class="role-card-icon-wrap">
+            <svg class="role-card-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Person with heart icon -->
+              <circle cx="32" cy="18" r="9" stroke="currentColor" stroke-width="3" fill="none"/>
+              <path d="M16 50c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <path d="M32 40l-2.5-2.3C26.5 35 24.5 33 24.5 30.7a3 3 0 0 1 3-3c1.1 0 2.2.5 3 1.4l1.5 1.6 1.5-1.6a4 4 0 0 1 3-1.4 3 3 0 0 1 3 3c0 2.3-2 4.3-5 7L32 40z" fill="currentColor"/>
+            </svg>
+          </div>
+          <span class="role-card-label">Patient</span>
+          <span class="role-card-desc">I need medical care</span>
+          <div class="role-card-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </button>
+      </div>
+    </main>
+
+    <footer class="role-footer">
+      <p>&copy; 2026 Doctor Link</p>
+    </footer>
+  </div>
+
+  <!-- Authentication Screen -->
+  <div id="auth-screen" class="auth-screen" aria-hidden="true">
+    <header class="auth-header">
+      <button type="button" id="auth-back" class="auth-back" aria-label="Go back to role selection">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span>Back</span>
+      </button>
+      <div class="auth-brand">
+        <svg class="auth-brand-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="18" y="8" width="12" height="32" rx="3" fill="currentColor"/>
+          <rect x="8" y="18" width="32" height="12" rx="3" fill="currentColor"/>
+        </svg>
+        <span class="auth-brand-name">Doctor Link</span>
+      </div>
+    </header>
+
+    <main class="auth-main">
+      <div class="auth-container">
+        <div class="auth-heading">
+          <h2 id="auth-title" class="auth-title">Doctor Login</h2>
+          <p id="auth-subtitle" class="auth-subtitle">Welcome back! Please sign in to continue.</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form active" novalidate>
+          <div class="input-group">
+            <label for="login-email" class="input-label">Email address</label>
+            <div class="input-wrap">
+              <input type="email" id="login-email" class="input-field" placeholder="Enter your email" autocomplete="email">
+            </div>
+            <span class="input-error" id="login-email-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="login-password" class="input-label">Password</label>
+            <div class="input-wrap input-wrap--has-toggle">
+              <input type="password" id="login-password" class="input-field" placeholder="Enter your password" autocomplete="current-password">
+              <button type="button" class="password-toggle" aria-label="Show password" data-target="login-password">
+                <svg class="eye-icon eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg class="eye-icon eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                  <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                  <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+              </button>
+            </div>
+            <span class="input-error" id="login-password-error"></span>
+          </div>
+
+          <div class="auth-options">
+            <a href="#" class="forgot-link" id="forgot-password">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn-primary">Login</button>
+
+          <div class="auth-divider"><span>OR</span></div>
+
+          <div class="social-buttons">
+            <button type="button" class="btn-social btn-google">
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 0 0 1 12c0 1.77.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              Continue with Google
+            </button>
+            <button type="button" class="btn-social btn-apple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+              </svg>
+              Continue with Apple
+            </button>
+          </div>
+
+          <p class="auth-switch">
+            Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a>
+          </p>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form id="signup-form" class="auth-form" novalidate>
+          <div class="input-group">
+            <label for="signup-name" class="input-label">Full name</label>
+            <div class="input-wrap">
+              <input type="text" id="signup-name" class="input-field" placeholder="Enter your full name" autocomplete="name">
+            </div>
+            <span class="input-error" id="signup-name-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="signup-email" class="input-label">Email address</label>
+            <div class="input-wrap">
+              <input type="email" id="signup-email" class="input-field" placeholder="Enter your email" autocomplete="email">
+            </div>
+            <span class="input-error" id="signup-email-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="signup-mobile" class="input-label">Mobile number</label>
+            <div class="input-wrap">
+              <input type="tel" id="signup-mobile" class="input-field" placeholder="Enter your mobile number" autocomplete="tel">
+            </div>
+            <span class="input-error" id="signup-mobile-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="signup-password" class="input-label">Password</label>
+            <div class="input-wrap input-wrap--has-toggle">
+              <input type="password" id="signup-password" class="input-field" placeholder="Create a password" autocomplete="new-password">
+              <button type="button" class="password-toggle" aria-label="Show password" data-target="signup-password">
+                <svg class="eye-icon eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg class="eye-icon eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                  <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                  <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+              </button>
+            </div>
+            <span class="input-error" id="signup-password-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="signup-confirm" class="input-label">Confirm password</label>
+            <div class="input-wrap input-wrap--has-toggle">
+              <input type="password" id="signup-confirm" class="input-field" placeholder="Confirm your password" autocomplete="new-password">
+              <button type="button" class="password-toggle" aria-label="Show password" data-target="signup-confirm">
+                <svg class="eye-icon eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg class="eye-icon eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                  <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                  <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+              </button>
+            </div>
+            <span class="input-error" id="signup-confirm-error"></span>
+          </div>
+
+          <button type="submit" class="btn-primary">Create Account</button>
+
+          <div class="auth-divider"><span>OR</span></div>
+
+          <div class="social-buttons">
+            <button type="button" class="btn-social btn-google">
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 0 0 1 12c0 1.77.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              Continue with Google
+            </button>
+            <button type="button" class="btn-social btn-apple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+              </svg>
+              Continue with Apple
+            </button>
+          </div>
+
+          <p class="auth-switch">
+            Already have an account? <a href="#" id="switch-to-login">Login</a>
+          </p>
+        </form>
+      </div>
+    </main>
+
+    <footer class="auth-footer">
+      <p>&copy; 2026 Doctor Link</p>
+    </footer>
+  </div>
+
+  <!-- Doctor Registration Screen -->
+  <div id="reg-screen" class="reg-screen" aria-hidden="true">
+    <header class="reg-header">
+      <button type="button" id="reg-back-btn" class="auth-back" aria-label="Go back">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span>Back</span>
+      </button>
+      <div class="reg-progress">
+        <span class="reg-step-label" id="reg-step-label">Step 1 of 4</span>
+        <div class="reg-progress-track">
+          <div class="reg-progress-fill" id="reg-progress-fill" style="width:25%"></div>
+        </div>
+      </div>
+      <div class="auth-brand">
+        <svg class="auth-brand-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="18" y="8" width="12" height="32" rx="3" fill="currentColor"/>
+          <rect x="8" y="18" width="32" height="12" rx="3" fill="currentColor"/>
+        </svg>
+        <span class="auth-brand-name">Doctor Link</span>
+      </div>
+    </header>
+
+    <main class="reg-main">
+      <div class="reg-container">
+
+        <!-- Step 1: Basic Details -->
+        <div class="reg-step active" id="reg-step-1">
+          <div class="reg-step-heading">
+            <h2 class="reg-step-title">Tell us about yourself</h2>
+            <p class="reg-step-desc">Basic information for your Doctor Link profile.</p>
+          </div>
+
+          <div class="photo-upload">
+            <div class="photo-preview" id="photo-preview">
+              <svg class="photo-placeholder" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <img id="photo-img" src="" alt="Profile photo" style="display:none">
+            </div>
+            <div class="photo-actions">
+              <button type="button" id="photo-upload-btn" class="btn-text">Upload Photo</button>
+              <button type="button" id="photo-remove-btn" class="btn-text btn-text--danger" style="display:none">Remove</button>
+              <span class="input-optional">Optional</span>
+            </div>
+            <input type="file" id="photo-input" accept="image/*" hidden>
+          </div>
+
+          <div class="input-group">
+            <label for="reg-name" class="input-label">Full Name</label>
+            <div class="input-wrap">
+              <input type="text" id="reg-name" class="input-field" placeholder="Enter your full name" autocomplete="name">
+            </div>
+            <span class="input-error" id="reg-name-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="reg-email" class="input-label">Email Address</label>
+            <div class="input-wrap">
+              <input type="email" id="reg-email" class="input-field" placeholder="Enter your email" autocomplete="email">
+            </div>
+            <span class="input-error" id="reg-email-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="reg-mobile" class="input-label">Mobile Number</label>
+            <div class="input-wrap">
+              <input type="tel" id="reg-mobile" class="input-field" placeholder="Enter your mobile number" autocomplete="tel">
+            </div>
+            <span class="input-error" id="reg-mobile-error"></span>
+          </div>
+        </div>
+
+        <!-- Step 2: Professional Details -->
+        <div class="reg-step" id="reg-step-2">
+          <div class="reg-step-heading">
+            <h2 class="reg-step-title">Professional Information</h2>
+            <p class="reg-step-desc">Tell us about your medical practice.</p>
+          </div>
+
+          <div class="input-group">
+            <label for="reg-specialization" class="input-label">Medical Specialization</label>
+            <div class="select-search" id="spec-select">
+              <div class="input-wrap">
+                <input type="text" id="reg-specialization" class="input-field" placeholder="Search or select specialization" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="spec-list">
+                <button type="button" class="select-chevron" aria-label="Open dropdown" tabindex="-1">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </button>
+              </div>
+              <ul class="select-dropdown" id="spec-list" role="listbox" style="display:none"></ul>
+            </div>
+            <span class="input-error" id="reg-specialization-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="reg-registration" class="input-label">Medical Registration Number</label>
+            <div class="input-wrap">
+              <input type="text" id="reg-registration" class="input-field" placeholder="Enter your registration number">
+            </div>
+            <span class="input-error" id="reg-registration-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="reg-experience" class="input-label">Years of Experience</label>
+            <div class="input-wrap">
+              <input type="number" id="reg-experience" class="input-field" placeholder="e.g. 5" min="0" max="70">
+            </div>
+            <span class="input-error" id="reg-experience-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="reg-qualification" class="input-label">Qualification</label>
+            <div class="input-wrap">
+              <input type="text" id="reg-qualification" class="input-field" placeholder="e.g. MBBS, MD, MS">
+            </div>
+            <span class="input-error" id="reg-qualification-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="reg-gender" class="input-label">Gender</label>
+            <div class="input-wrap">
+              <select id="reg-gender" class="input-field select-native">
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+            <span class="input-error" id="reg-gender-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="reg-bio" class="input-label">Short Professional Bio <span class="input-optional">(optional)</span></label>
+            <div class="input-wrap">
+              <textarea id="reg-bio" class="input-field textarea-field" placeholder="Tell patients about your experience and approach..." rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Practice Details -->
+        <div class="reg-step" id="reg-step-3">
+          <div class="reg-step-heading">
+            <h2 class="reg-step-title">Where do you practice?</h2>
+            <p class="reg-step-desc">Help patients find you at your practice location.</p>
+          </div>
+
+          <div class="practice-cards">
+            <button type="button" class="practice-card" data-type="hospital">
+              <svg class="practice-card-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="4" y="3" width="16" height="18" rx="2"/>
+                <path d="M9 21v-4h6v4"/>
+                <path d="M12 7v4m-2-2h4"/>
+              </svg>
+              <span class="practice-card-label">Hospital</span>
+            </button>
+            <button type="button" class="practice-card" data-type="clinic">
+              <svg class="practice-card-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 21h18"/>
+                <path d="M5 21V8l7-5 7 5v13"/>
+                <path d="M12 13v3m-1.5-1.5h3"/>
+              </svg>
+              <span class="practice-card-label">Clinic</span>
+            </button>
+            <button type="button" class="practice-card" data-type="both">
+              <svg class="practice-card-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="5" width="9" height="16" rx="1"/>
+                <path d="M6.5 9v3m-1.5-1.5h3"/>
+                <rect x="13" y="9" width="9" height="12" rx="1"/>
+                <path d="M17.5 13v2m-1-1h2"/>
+              </svg>
+              <span class="practice-card-label">Both Hospital &amp; Clinic</span>
+            </button>
+            <button type="button" class="practice-card" data-type="independent">
+              <svg class="practice-card-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="7" r="4"/>
+                <path d="M6 21v-2a6 6 0 0 1 12 0v2"/>
+              </svg>
+              <span class="practice-card-label">Independent / Solo Practice</span>
+            </button>
+          </div>
+          <span class="input-error" id="practice-type-error"></span>
+
+          <div class="facility-section" id="facility-section" style="display:none">
+            <div class="facility-location">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span>Sri Ganganagar, Rajasthan</span>
+            </div>
+
+            <div class="input-group">
+              <div class="input-wrap">
+                <input type="text" id="facility-search" class="input-field" placeholder="Search hospital or clinic...">
+              </div>
+            </div>
+
+            <div class="facility-list" id="facility-list"></div>
+            <span class="input-error" id="facility-select-error"></span>
+
+            <button type="button" class="add-facility-btn" id="add-facility-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              <span>Add a new hospital/clinic</span>
+            </button>
+          </div>
+
+          <div class="add-facility-form" id="add-facility-form" style="display:none">
+            <h3 class="add-facility-title">Add New Facility</h3>
+
+            <div class="input-group">
+              <label for="new-fac-name" class="input-label">Hospital/Clinic Name</label>
+              <div class="input-wrap">
+                <input type="text" id="new-fac-name" class="input-field" placeholder="Enter facility name">
+              </div>
+              <span class="input-error" id="new-fac-name-error"></span>
+            </div>
+
+            <div class="input-group">
+              <label for="new-fac-type" class="input-label">Facility Type</label>
+              <div class="input-wrap">
+                <select id="new-fac-type" class="input-field select-native">
+                  <option value="">Select type</option>
+                  <option value="Hospital">Hospital</option>
+                  <option value="Clinic">Clinic</option>
+                </select>
+              </div>
+              <span class="input-error" id="new-fac-type-error"></span>
+            </div>
+
+            <div class="input-group">
+              <label for="new-fac-address" class="input-label">Address</label>
+              <div class="input-wrap">
+                <input type="text" id="new-fac-address" class="input-field" placeholder="Enter address">
+              </div>
+              <span class="input-error" id="new-fac-address-error"></span>
+            </div>
+
+            <div class="input-group">
+              <label for="new-fac-area" class="input-label">Area/Locality</label>
+              <div class="input-wrap">
+                <input type="text" id="new-fac-area" class="input-field" placeholder="Enter area or locality">
+              </div>
+              <span class="input-error" id="new-fac-area-error"></span>
+            </div>
+
+            <div class="input-group">
+              <label for="new-fac-contact" class="input-label">Contact Number <span class="input-optional">(optional)</span></label>
+              <div class="input-wrap">
+                <input type="tel" id="new-fac-contact" class="input-field" placeholder="Enter contact number">
+              </div>
+            </div>
+
+            <div class="add-facility-actions">
+              <button type="button" id="add-facility-cancel" class="btn-secondary">Cancel</button>
+              <button type="button" id="add-facility-save" class="btn-primary">Add Facility</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Review -->
+        <div class="reg-step" id="reg-step-4">
+          <div class="reg-step-heading">
+            <h2 class="reg-step-title">Review your information</h2>
+            <p class="reg-step-desc">Please verify the details below before continuing.</p>
+          </div>
+
+          <div class="review-section">
+            <div class="review-header">
+              <h3>Basic Information</h3>
+              <button type="button" class="review-edit-btn" data-step="1">Edit</button>
+            </div>
+            <div class="review-body" id="review-basic"></div>
+          </div>
+
+          <div class="review-section">
+            <div class="review-header">
+              <h3>Professional Information</h3>
+              <button type="button" class="review-edit-btn" data-step="2">Edit</button>
+            </div>
+            <div class="review-body" id="review-professional"></div>
+          </div>
+
+          <div class="review-section">
+            <div class="review-header">
+              <h3>Practice Information</h3>
+              <button type="button" class="review-edit-btn" data-step="3">Edit</button>
+            </div>
+            <div class="review-body" id="review-practice"></div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="reg-footer">
+      <button type="button" id="reg-continue-btn" class="btn-primary">Continue</button>
+    </footer>
+  </div>
+
+  <!-- Registration Complete Screen -->
+  <div id="reg-complete" class="reg-complete-screen" aria-hidden="true">
+    <div class="success-content">
+      <div class="success-check">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M20 33l8 8 16-16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="success-title">Doctor profile created successfully</h2>
+      <p class="success-desc">A unique Doctor Link ID has been assigned to your profile.</p>
+
+      <div class="demo-id-card">
+        <span class="demo-id-label">Your Doctor Link ID</span>
+        <div class="demo-id-value">
+          <span class="demo-id-text" id="demo-id-text">DL-DEMO-XXXXXX</span>
+          <button type="button" id="copy-id-btn" class="copy-btn" aria-label="Copy Doctor Link ID">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span id="copy-label">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <p class="demo-disclaimer">This is a demonstration ID for prototype purposes only. It does not represent a real medical registration or official verification number.</p>
+    </div>
+
+    <footer class="complete-footer">
+      <p>&copy; 2026 Doctor Link</p>
+    </footer>
+  </div>
+
+  <!-- Patient Registration Screen -->
+  <div id="pat-reg-screen" class="pat-reg-screen" aria-hidden="true">
+    <header class="reg-header">
+      <button type="button" id="pat-reg-back-btn" class="auth-back" aria-label="Go back">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span>Back</span>
+      </button>
+      <div class="reg-progress">
+        <span class="reg-step-label" id="pat-step-label">1 of 3</span>
+        <div class="reg-progress-track">
+          <div class="reg-progress-fill" id="pat-progress-fill" style="width:33.3%"></div>
+        </div>
+      </div>
+      <div class="auth-brand">
+        <svg class="auth-brand-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="18" y="8" width="12" height="32" rx="3" fill="currentColor"/>
+          <rect x="8" y="18" width="32" height="12" rx="3" fill="currentColor"/>
+        </svg>
+        <span class="auth-brand-name">Doctor Link</span>
+      </div>
+    </header>
+
+    <main class="reg-main">
+      <div class="reg-container">
+
+        <!-- Patient Step 1: Basic Details -->
+        <div class="reg-step active" id="pat-step-1">
+          <div class="reg-step-heading">
+            <h2 class="reg-step-title">Tell us about yourself</h2>
+            <p class="reg-step-desc">Basic information for your Doctor Link profile.</p>
+          </div>
+
+          <div class="photo-upload">
+            <div class="photo-preview" id="pat-photo-preview">
+              <svg class="photo-placeholder" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <img id="pat-photo-img" src="" alt="Profile photo" style="display:none">
+            </div>
+            <div class="photo-actions">
+              <button type="button" id="pat-photo-upload-btn" class="btn-text">Upload Photo</button>
+              <button type="button" id="pat-photo-remove-btn" class="btn-text btn-text--danger" style="display:none">Remove</button>
+              <span class="input-optional">Optional</span>
+            </div>
+            <input type="file" id="pat-photo-input" accept="image/*" hidden>
+          </div>
+
+          <div class="input-group">
+            <label for="pat-name" class="input-label">Full Name</label>
+            <div class="input-wrap">
+              <input type="text" id="pat-name" class="input-field" placeholder="Enter your full name" autocomplete="name">
+            </div>
+            <span class="input-error" id="pat-name-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="pat-mobile" class="input-label">Mobile Number</label>
+            <div class="input-wrap">
+              <input type="tel" id="pat-mobile" class="input-field" placeholder="Enter your mobile number" autocomplete="tel">
+            </div>
+            <span class="input-error" id="pat-mobile-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="pat-email" class="input-label">Email Address</label>
+            <div class="input-wrap">
+              <input type="email" id="pat-email" class="input-field" placeholder="Enter your email address" autocomplete="email">
+            </div>
+            <span class="input-error" id="pat-email-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="pat-dob" class="input-label">Date of Birth</label>
+            <div class="input-wrap">
+              <input type="date" id="pat-dob" class="input-field" autocomplete="bday">
+            </div>
+            <span class="input-error" id="pat-dob-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="pat-gender" class="input-label">Gender</label>
+            <div class="input-wrap">
+              <select id="pat-gender" class="input-field select-native">
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+            <span class="input-error" id="pat-gender-error"></span>
+          </div>
+        </div>
+
+        <!-- Patient Step 2: Additional Details -->
+        <div class="reg-step" id="pat-step-2">
+          <div class="reg-step-heading">
+            <h2 class="reg-step-title">Additional Information</h2>
+            <p class="reg-step-desc">Help us personalize your experience.</p>
+          </div>
+
+          <div class="input-group">
+            <label for="pat-address" class="input-label">Address / Locality <span class="input-optional">(optional)</span></label>
+            <div class="input-wrap">
+              <input type="text" id="pat-address" class="input-field" placeholder="Enter your address or locality" autocomplete="street-address">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="pat-language" class="input-label">Preferred Language</label>
+            <div class="input-wrap">
+              <select id="pat-language" class="input-field select-native">
+                <option value="">Select language</option>
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+              </select>
+            </div>
+            <span class="input-error" id="pat-language-error"></span>
+          </div>
+
+          <div class="input-group">
+            <label for="pat-emergency-name" class="input-label">Emergency Contact Name <span class="input-optional">(optional)</span></label>
+            <div class="input-wrap">
+              <input type="text" id="pat-emergency-name" class="input-field" placeholder="Enter emergency contact name">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="pat-emergency-number" class="input-label">Emergency Contact Number <span class="input-optional">(optional)</span></label>
+            <div class="input-wrap">
+              <input type="tel" id="pat-emergency-number" class="input-field" placeholder="Enter emergency contact number" autocomplete="tel">
+            </div>
+            <span class="input-error" id="pat-emergency-number-error"></span>
+          </div>
+        </div>
+
+        <!-- Patient Step 3: Review -->
+        <div class="reg-step" id="pat-step-3">
+          <div class="reg-step-heading">
+            <h2 class="reg-step-title">Review your information</h2>
+            <p class="reg-step-desc">Please verify the details below before continuing.</p>
+          </div>
+
+          <div class="review-section">
+            <div class="review-header">
+              <h3>Basic Information</h3>
+              <button type="button" class="review-edit-btn pat-review-edit" data-pat-step="1">Edit</button>
+            </div>
+            <div class="review-body" id="pat-review-basic"></div>
+          </div>
+
+          <div class="review-section">
+            <div class="review-header">
+              <h3>Additional Information</h3>
+              <button type="button" class="review-edit-btn pat-review-edit" data-pat-step="2">Edit</button>
+            </div>
+            <div class="review-body" id="pat-review-additional"></div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="reg-footer">
+      <button type="button" id="pat-continue-btn" class="btn-primary">Continue</button>
+    </footer>
+  </div>
+
+  <!-- Patient Registration Complete Screen -->
+  <div id="pat-reg-complete" class="pat-reg-complete-screen" aria-hidden="true">
+    <div class="success-content">
+      <div class="success-check">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M20 33l8 8 16-16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="success-title">Your patient profile is ready</h2>
+      <p class="success-desc">You can now use Doctor Link to find doctors and healthcare facilities. Appointment booking and other features will be available soon.</p>
+      <p class="demo-disclaimer">This is a frontend prototype. No real account has been created in a backend system.</p>
+    </div>
+
+    <footer class="complete-footer">
+      <p>&copy; 2026 Doctor Link</p>
+    </footer>
+  </div>
+
+  <!-- Patient Dashboard Screen -->
+  <div id="pat-dashboard" class="pat-dashboard-screen" aria-hidden="true">
+
+    <!-- Dashboard Header -->
+    <header class="dash-header">
+      <div class="dash-header-left">
+        <h1 class="dash-greeting" id="dash-greeting">Good morning</h1>
+        <div class="dash-location">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Sri Ganganagar</span>
+        </div>
+      </div>
+      <div class="dash-header-actions">
+        <button type="button" class="dash-icon-btn" id="dash-notif-btn" aria-label="Notifications">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </button>
+        <button type="button" class="dash-icon-btn dash-avatar-btn" id="dash-profile-btn" aria-label="Profile">
+          <img id="dash-avatar-img" src="" alt="Profile" style="display:none">
+          <span class="dash-avatar-placeholder" id="dash-avatar-placeholder"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Dashboard Main Content -->
+    <main class="dash-main">
+      <div class="dash-scroll-content">
+
+        <!-- Hero / Search Area -->
+        <div class="dash-hero">
+          <h2 class="dash-hero-title">What do you need today?</h2>
+          <div class="dash-search-wrap">
+            <svg class="dash-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="dash-search" class="dash-search-input" placeholder="Search doctors, hospitals or clinics" readonly>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="dash-quick-actions">
+          <button type="button" class="dash-action-card" data-action="Find a Doctor">
+            <div class="dash-action-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="8" r="5"/>
+                <path d="M20 21a8 8 0 0 0-16 0"/>
+                <path d="M12 11v3m-1.5 0h3"/>
+              </svg>
+            </div>
+            <span class="dash-action-label">Find a Doctor</span>
+          </button>
+
+          <button type="button" class="dash-action-card" data-action="Find a Hospital / Clinic">
+            <div class="dash-action-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="4" y="3" width="16" height="18" rx="2"/>
+                <path d="M9 21v-4h6v4"/>
+                <path d="M12 7v4m-2-2h4"/>
+              </svg>
+            </div>
+            <span class="dash-action-label">Hospital / Clinic</span>
+          </button>
+
+          <button type="button" class="dash-action-card" data-action="My Appointments">
+            <div class="dash-action-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+                <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
+              </svg>
+            </div>
+            <span class="dash-action-label">My Appointments</span>
+          </button>
+
+          <button type="button" class="dash-action-card" data-action="My Profile">
+            <div class="dash-action-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <span class="dash-action-label">My Profile</span>
+          </button>
+        </div>
+
+        <!-- Upcoming Appointment -->
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h3 class="dash-card-title">Upcoming Appointment</h3>
+          </div>
+          <div class="dash-card-body" id="dash-upcoming-body">
+            <div class="dash-empty-state">
+              <div class="dash-empty-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+              </div>
+              <p class="dash-empty-text">No upcoming appointments</p>
+              <button type="button" class="dash-empty-cta dash-find-doctor-cta">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"/>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+                Find a Doctor
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Current Appointment / Token -->
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h3 class="dash-card-title">Your Current Appointment</h3>
+          </div>
+          <div class="dash-card-body" id="dash-current-body">
+            <div class="dash-empty-state">
+              <div class="dash-empty-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="5" width="20" height="14" rx="2"/>
+                  <path d="M12 9v4l2 2"/>
+                </svg>
+              </div>
+              <p class="dash-empty-text">No current appointment</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <h3 class="dash-card-title">Recent Activity</h3>
+          </div>
+          <div class="dash-card-body" id="dash-recent-body">
+            <div class="dash-empty-state">
+              <div class="dash-empty-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <p class="dash-empty-text">No recent activity</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="dash-bottom-nav" aria-label="Dashboard navigation">
+      <button type="button" class="dash-nav-item active" data-nav="home">
+        <svg class="dash-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span class="dash-nav-label">Home</span>
+      </button>
+      <button type="button" class="dash-nav-item" data-nav="appointments">
+        <svg class="dash-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span class="dash-nav-label">Appointments</span>
+      </button>
+      <button type="button" class="dash-nav-item" data-nav="doctors">
+        <svg class="dash-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="8" r="5"/>
+          <path d="M20 21a8 8 0 0 0-16 0"/>
+        </svg>
+        <span class="dash-nav-label">Doctors</span>
+      </button>
+      <button type="button" class="dash-nav-item" data-nav="payments">
+        <svg class="dash-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="5" width="20" height="14" rx="2" />
+          <line x1="2" y1="10" x2="22" y2="10" />
+        </svg>
+        <span class="dash-nav-label">Payments</span>
+      </button>
+      <button type="button" class="dash-nav-item" data-nav="profile">
+        <svg class="dash-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span class="dash-nav-label">Profile</span>
+      </button>
+    </nav>
+
+    <!-- Toast notification -->
+    <div class="dash-toast" id="dash-toast"></div>
+
+  </div>
+
+  <!-- Doctor Dashboard Screen -->
+  <div id="doc-dashboard" class="doc-dashboard-screen" aria-hidden="true">
+
+    <!-- Dashboard Header -->
+    <header class="doc-dash-header">
+      <div class="doc-dash-header-left">
+        <h1 class="doc-dash-greeting" id="doc-dash-greeting">Good morning, Dr.</h1>
+        <div class="doc-dash-location">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Sri Ganganagar</span>
+        </div>
+      </div>
+      <div class="doc-dash-header-actions">
+        <button type="button" class="doc-dash-icon-btn" id="doc-dash-notif-btn" aria-label="Notifications">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </button>
+        <button type="button" class="doc-dash-icon-btn doc-dash-avatar-btn" id="doc-dash-profile-btn" aria-label="Profile">
+          <img id="doc-dash-avatar-img" src="" alt="Profile" style="display:none">
+          <span class="doc-dash-avatar-placeholder" id="doc-dash-avatar-placeholder">D</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Dashboard Main Content -->
+    <main class="doc-dash-main">
+      <div class="doc-dash-scroll-content">
+
+        <!-- Practice Status -->
+        <div class="doc-status-section" id="doc-status-wrap">
+          <div class="doc-status-info">
+            <h2 class="doc-status-title" id="doc-status-label">Clinic Closed</h2>
+            <p class="doc-status-desc" id="doc-status-desc">You're currently not accepting patients</p>
+          </div>
+          <div style="display:flex; align-items:center; gap: 12px;">
+            <select id="doc-delay-select" class="input-field select-native" style="display:none; padding: 4px 8px; font-size: 0.75rem; height: auto;">
+              <option value="0">On Time</option>
+              <option value="10">Running 10m Late</option>
+              <option value="15">Running 15m Late</option>
+              <option value="20">Running 20m Late</option>
+            </select>
+            <div class="doc-toggle-wrap">
+              <span class="doc-toggle-label" aria-hidden="true">Open</span>
+              <input type="checkbox" id="doc-status-toggle" class="doc-toggle" aria-label="Toggle clinic status">
+            </div>
+          </div>
+        </div>
+
+        <!-- Today's Overview Grid -->
+        <h3 class="doc-dash-section-title">Today's Overview</h3>
+        <div class="doc-overview-grid">
+          <div class="doc-stat-card">
+            <span class="doc-stat-value" id="doc-stat-today">0</span>
+            <span class="doc-stat-label">Today's Appointments</span>
+          </div>
+          <div class="doc-stat-card">
+            <span class="doc-stat-value" id="doc-stat-seen">0</span>
+            <span class="doc-stat-label">Patients Seen</span>
+          </div>
+          <div class="doc-stat-card">
+            <span class="doc-stat-value" id="doc-stat-waiting">0</span>
+            <span class="doc-stat-label">Waiting Patients</span>
+          </div>
+          <div class="doc-stat-card">
+            <span class="doc-stat-value" id="doc-stat-current">&mdash;</span>
+            <span class="doc-stat-label">Current Token</span>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="doc-quick-actions">
+          <button type="button" class="doc-action-card" data-action="Today's Appointments">
+            <div class="doc-action-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+                <circle cx="12" cy="15" r="2"/>
+              </svg>
+            </div>
+            <span class="doc-action-label">Appointments</span>
+          </button>
+
+          <button type="button" class="doc-action-card" data-action="Patient Queue">
+            <div class="doc-action-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <span class="doc-action-label">Queue</span>
+          </button>
+
+          <button type="button" class="doc-action-card" data-action="My Practice">
+            <div class="doc-action-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="4" y="3" width="16" height="18" rx="2"/>
+                <path d="M9 21v-4h6v4"/>
+                <path d="M12 7v4m-2-2h4"/>
+              </svg>
+            </div>
+            <span class="doc-action-label">Practice</span>
+          </button>
+
+          <button type="button" class="doc-action-card" data-action="My Profile">
+            <div class="doc-action-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <span class="doc-action-label">Profile</span>
+          </button>
+        </div>
+
+        <!-- Current Queue -->
+        <div class="doc-dash-card">
+          <div class="doc-dash-card-header">
+            <h3 class="doc-dash-card-title">Today's Queue</h3>
+            <span id="doc-queue-status-badge" style="font-size: 0.75rem; background: var(--color-success); color: white; padding: 2px 8px; border-radius: 12px; display: none;">Active</span>
+          </div>
+          <div class="doc-dash-card-body" id="doc-queue-body">
+            <div class="doc-dash-empty-state" id="doc-queue-empty">
+              <div class="doc-dash-empty-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="5" width="20" height="14" rx="2"/>
+                  <path d="M12 9v4l2 2"/>
+                </svg>
+              </div>
+              <p class="doc-dash-empty-text">No patients in today's queue</p>
+            </div>
+            
+            <div id="doc-queue-active" style="display:none;">
+              <div class="doc-queue-reserve" style="margin-top: 0; padding-top: 0; border-top: none;">
+                <div class="doc-queue-row">
+                  <span class="doc-queue-label">Current Token</span>
+                  <span class="doc-queue-value" id="doc-queue-current" style="font-size: 1.25rem; font-weight: bold; color: var(--color-text);">&mdash;</span>
+                </div>
+                <div class="doc-queue-row">
+                  <span class="doc-queue-label">Next Patient</span>
+                  <span class="doc-queue-value" id="doc-queue-next">&mdash;</span>
+                </div>
+                <div class="doc-queue-row">
+                  <span class="doc-queue-label">Patients Waiting</span>
+                  <span class="doc-queue-value" id="doc-queue-waiting-count">0</span>
+                </div>
+              </div>
+              
+              <div style="display:flex; gap: 8px; margin-top: 16px;">
+                <button type="button" class="btn-primary" id="doc-queue-call-next" style="flex: 1; padding: 10px; font-size: 0.875rem;">Call Next Patient</button>
+                <button type="button" class="btn-secondary" id="doc-queue-mark-completed" style="flex: 1; padding: 10px; font-size: 0.875rem;">Mark Completed</button>
+              </div>
+
+              <div style="margin-top: 24px;">
+                <h4 style="font-size: 0.875rem; margin-bottom: 12px; color: var(--color-text);">Patient Queue List</h4>
+                <div id="doc-queue-list" style="display:flex; flex-direction:column; gap: 8px;">
+                  <!-- Queue items injected here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Today's Appointments -->
+        <div class="doc-dash-card">
+          <div class="doc-dash-card-header">
+            <h3 class="doc-dash-card-title">Today's Appointments</h3>
+          </div>
+          <div class="doc-dash-card-body" id="doc-home-appointments-body">
+            <div class="doc-dash-empty-state" id="doc-home-appointments-empty">
+              <div class="doc-dash-empty-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+              </div>
+              <p class="doc-dash-empty-text">No appointments scheduled</p>
+            </div>
+            <div id="doc-home-appointments-list" style="display:flex; flex-direction:column; gap:8px;"></div>
+          </div>
+        </div>
+
+        <!-- Tomorrow Summary -->
+        <div class="doc-dash-card">
+          <div class="doc-dash-card-header" style="justify-content:space-between; display:flex; align-items:center;">
+            <h3 class="doc-dash-card-title">Tomorrow</h3>
+            <button type="button" class="btn-text doc-view-all-apts" style="font-size:0.75rem;" onclick="document.querySelector('[data-nav=appointments]').click()">View All</button>
+          </div>
+          <div class="doc-dash-card-body" id="doc-home-tomorrow-body">
+            <div id="doc-home-tomorrow-content">
+              <div style="font-weight:bold; font-size:1.1rem; color:var(--color-primary-dark);"><span id="doc-tomorrow-count">0</span> appointments</div>
+              <div style="font-size:0.875rem; color:var(--color-text-muted); margin-top:4px;" id="doc-tomorrow-next">Next appointment: —</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Summary -->
+        <div class="doc-dash-card">
+          <div class="doc-dash-card-header" style="justify-content:space-between; display:flex; align-items:center;">
+            <h3 class="doc-dash-card-title">Upcoming</h3>
+            <button type="button" class="btn-text doc-view-all-apts" style="font-size:0.75rem;" onclick="document.querySelector('[data-nav=appointments]').click()">View All</button>
+          </div>
+          <div class="doc-dash-card-body" id="doc-home-upcoming-body">
+            <div id="doc-home-upcoming-content">
+              <div style="font-weight:bold; font-size:1.1rem; color:var(--color-primary-dark);"><span id="doc-upcoming-count">0</span> appointments</div>
+              <div style="font-size:0.875rem; color:var(--color-text-muted); margin-top:4px;" id="doc-upcoming-next">Next: —</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Practice Information -->
+        <div class="doc-dash-card">
+          <div class="doc-dash-card-header">
+            <h3 class="doc-dash-card-title">Practice Information</h3>
+          </div>
+          <div class="doc-dash-card-body">
+            <div class="doc-practice-info">
+              <div class="doc-practice-row">
+                <span class="doc-practice-label">Specialization</span>
+                <span class="doc-practice-value" id="doc-practice-spec">&mdash;</span>
+              </div>
+              <div class="doc-practice-row">
+                <span class="doc-practice-label">Practice Type</span>
+                <span class="doc-practice-value" id="doc-practice-type">&mdash;</span>
+              </div>
+              <div class="doc-practice-row">
+                <span class="doc-practice-label">Hospital/Clinic Name</span>
+                <span class="doc-practice-value" id="doc-practice-name">&mdash;</span>
+              </div>
+              <div class="doc-practice-row">
+                <span class="doc-practice-label">Location</span>
+                <span class="doc-practice-value" id="doc-practice-loc">Sri Ganganagar, Rajasthan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="doc-dash-bottom-nav" aria-label="Dashboard navigation">
+      <button type="button" class="doc-dash-nav-item active" data-nav="home">
+        <svg class="doc-dash-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span class="doc-dash-nav-label">Home</span>
+      </button>
+      <button type="button" class="doc-dash-nav-item" data-nav="appointments">
+        <svg class="doc-dash-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span class="doc-dash-nav-label">Appointments</span>
+      </button>
+      <button type="button" class="doc-dash-nav-item" data-nav="patients">
+        <svg class="doc-dash-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        <span class="doc-dash-nav-label">Patients</span>
+      </button>
+      <button type="button" class="doc-dash-nav-item" data-nav="profile">
+        <svg class="doc-dash-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span class="doc-dash-nav-label">Profile</span>
+      </button>
+    </nav>
+
+    <!-- Toast notification -->
+    <div class="doc-dash-toast" id="doc-dash-toast"></div>
+
+  </div>
+
+  <!-- Patient Discovery: Find a Doctor -->
+  <div id="pat-find-doctor" class="discovery-screen" aria-hidden="true">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="fd-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">Find a Doctor</h1>
+          <div class="disc-location">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Sri Ganganagar</span>
+          </div>
+        </div>
+      </div>
+      <div class="disc-search-wrap">
+        <svg class="disc-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="fd-search" class="disc-search-input" placeholder="Search doctor, specialty or hospital">
+      </div>
+      <div class="disc-filters">
+        <button type="button" class="disc-filter-btn active" data-filter="All">All</button>
+        <button type="button" class="disc-filter-btn" data-filter="General Physician">General Physician</button>
+        <button type="button" class="disc-filter-btn" data-filter="Cardiologist">Cardiologist</button>
+        <button type="button" class="disc-filter-btn" data-filter="Dermatologist">Dermatologist</button>
+        <button type="button" class="disc-filter-btn" data-filter="Pediatrician">Pediatrician</button>
+        <button type="button" class="disc-filter-btn" data-filter="Orthopedic">Orthopedic</button>
+        <button type="button" class="disc-filter-btn" data-filter="Gynecologist">Gynecologist</button>
+        <button type="button" class="disc-filter-btn" data-filter="ENT Specialist">ENT</button>
+        <button type="button" class="disc-filter-btn" data-filter="Ophthalmologist">Ophthalmologist</button>
+        <button type="button" class="disc-filter-btn" data-filter="Dentist">Dentist</button>
+        <button type="button" class="disc-filter-btn" data-filter="Psychiatrist">Psychiatrist</button>
+        <button type="button" class="disc-filter-btn" data-filter="Nephrologist">Nephrologist</button>
+        <button type="button" class="disc-filter-btn" data-filter="Gastroenterologist">Gastro</button>
+        <button type="button" class="disc-filter-btn" data-filter="Pulmonologist">Pulmonologist</button>
+        <button type="button" class="disc-filter-btn" data-filter="Neurologist">Neurologist</button>
+        <button type="button" class="disc-filter-btn" data-filter="Urologist">Urologist</button>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content" id="fd-list">
+        <!-- Doctors injected here -->
+      </div>
+      <div class="disc-empty" id="fd-empty" style="display:none">
+        <svg class="disc-empty-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <h2 class="disc-empty-title">No doctors found</h2>
+        <p class="disc-empty-desc">Try a different search or specialty.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Patient Discovery: Find Hospital / Clinic -->
+  <div id="pat-find-facility" class="discovery-screen" aria-hidden="true">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="ff-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">Find a Hospital or Clinic</h1>
+          <div class="disc-location">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Sri Ganganagar</span>
+          </div>
+        </div>
+      </div>
+      <div class="disc-search-wrap">
+        <svg class="disc-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="ff-search" class="disc-search-input" placeholder="Search hospitals or clinics">
+      </div>
+      <div class="disc-filters">
+        <button type="button" class="disc-filter-btn active" data-filter="All">All</button>
+        <button type="button" class="disc-filter-btn" data-filter="Hospitals">Hospitals</button>
+        <button type="button" class="disc-filter-btn" data-filter="Clinics">Clinics</button>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content" id="ff-list">
+        <!-- Facilities injected here -->
+      </div>
+      <div class="disc-empty" id="ff-empty" style="display:none">
+        <svg class="disc-empty-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 21v-4h6v4"/><path d="M12 7v4m-2-2h4"/></svg>
+        <h2 class="disc-empty-title">No hospitals or clinics found</h2>
+        <p class="disc-empty-desc">Try a different search.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Facility Details Screen -->
+  <div id="pat-facility-details" class="discovery-screen" aria-hidden="true">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="detail-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="fac-detail-hero">
+        <div class="fac-detail-type" id="detail-type">Hospital</div>
+        <h1 class="fac-detail-title" id="detail-name">Facility Name</h1>
+        <div class="disc-location">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span id="detail-loc">Sri Ganganagar</span>
+        </div>
+      </div>
+      <div class="disc-scroll-content">
+        
+        <div class="doc-prof-actions" style="margin-bottom: var(--space-md);">
+          <button type="button" class="doc-prof-btn doc-prof-btn-primary" id="detail-book-btn">Book Appointment</button>
+          <button type="button" class="doc-prof-btn doc-prof-btn-secondary" id="detail-view-doctors-btn">View Doctors</button>
+        </div>
+
+        <div class="fac-section">
+          <h3 class="fac-section-title">About</h3>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Address:</strong> <span id="detail-address"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Contact:</strong> <span id="detail-contact"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Hours:</strong> <span id="detail-hours"></span></div>
+          </div>
+        </div>
+
+        <div class="fac-section">
+          <h3 class="fac-section-title">Services</h3>
+          <p class="fac-section-content" id="detail-services">Information coming soon</p>
+        </div>
+
+        <div class="fac-section" id="detail-doctors-section">
+          <h3 class="fac-section-title">Doctors at this facility</h3>
+          <div id="detail-doctors-list" style="display:flex; flex-direction:column; gap:var(--space-sm); margin-top:var(--space-sm);">
+            <!-- Doctor cards injected here -->
+          </div>
+          <p class="fac-section-content" id="detail-no-doctors" style="display:none; margin-top:var(--space-sm);">No doctors listed yet</p>
+        </div>
+        
+        <div class="fac-section">
+          <h3 class="fac-section-title">Appointments</h3>
+          <p class="fac-section-content" id="detail-appointments-status">Information coming soon</p>
+        </div>
+        
+      </div>
+    </main>
+  </div>
+
+  <!-- Doctor Profile Screen -->
+  <div id="pat-doctor-profile" class="discovery-screen" aria-hidden="true">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="doc-profile-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="doc-prof-hero">
+        <div class="doc-prof-avatar">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h1 class="doc-prof-name" id="doc-prof-name">Dr. Name</h1>
+        <div class="doc-prof-spec" id="doc-prof-spec">Specialization</div>
+        <div class="doc-prof-id" id="doc-prof-id">ID</div>
+        <div class="disc-location" style="justify-content: center;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Sri Ganganagar</span>
+        </div>
+      </div>
+      <div class="disc-scroll-content">
+        <div class="doc-prof-actions">
+          <button type="button" class="doc-prof-btn doc-prof-btn-primary" id="doc-prof-book-btn">Book Appointment</button>
+          <button type="button" class="doc-prof-btn doc-prof-btn-secondary" id="doc-prof-fac-btn">View Hospital / Clinic</button>
+        </div>
+
+        <div class="fac-section" style="margin-top: var(--space-md);">
+          <h3 class="fac-section-title">About</h3>
+          <p class="fac-section-content" id="doc-prof-bio"></p>
+        </div>
+
+        <div class="fac-section">
+          <h3 class="fac-section-title">Professional Details</h3>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Qualification:</strong> <span id="doc-prof-qual"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Experience:</strong> <span id="doc-prof-exp"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Practice Type:</strong> <span id="doc-prof-prac"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Facility:</strong> <span id="doc-prof-fac"></span></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Global Search Screen -->
+  <div id="pat-global-search" class="discovery-screen" aria-hidden="true" style="z-index: 30;">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="gs-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-search-wrap" style="flex:1; margin:0;">
+          <svg class="disc-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="gs-search-input" class="disc-search-input" placeholder="Search doctors, specialties, hospitals...">
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content">
+        <div class="gs-results-wrap" id="gs-results">
+          <!-- Global Search Results injected here -->
+        </div>
+        <div class="disc-empty" id="gs-empty">
+          <svg class="disc-empty-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <h2 class="disc-empty-title">Search Doctor Link</h2>
+          <p class="disc-empty-desc">Find doctors, specialties, hospitals, or clinics.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Book Appointment Screen -->
+  <div id="pat-book-appointment" class="discovery-screen" aria-hidden="true">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="book-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">Book an Appointment</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content">
+        <!-- Selected Doctor Info -->
+        <div class="fac-section">
+          <h3 class="fac-section-title">Selected Doctor</h3>
+          <div class="disc-card-title" id="book-doc-name"></div>
+          <div class="disc-card-subtitle" style="color: var(--color-accent-dark);" id="book-doc-spec"></div>
+          <div class="disc-card-loc" style="margin-top: 4px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 21v-4h6v4"/><path d="M12 7v4m-2-2h4"/></svg>
+            <span id="book-fac-name"></span>
+          </div>
+          <div class="disc-card-loc">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Sri Ganganagar
+          </div>
+        </div>
+
+        <!-- Select Date -->
+        <div class="fac-section">
+          <h3 class="fac-section-title">Select Date</h3>
+          <div class="disc-filters" id="book-date-list" style="padding: 0; margin-top: 8px;">
+            <!-- Dates injected here -->
+          </div>
+        </div>
+
+        <!-- Select Time -->
+        <div class="fac-section" id="book-time-section" style="display:none;">
+          <h3 class="fac-section-title">Available Time Slots</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;" id="book-time-list">
+            <!-- Times injected here -->
+          </div>
+          <div id="book-time-error" class="input-error" style="margin-top: 8px; color: #d32f2f; font-size: 0.875rem;"></div>
+        </div>
+
+        <!-- Select Payment Method -->
+        <div class="fac-section" id="book-payment-section" style="display:none;">
+          <h3 class="fac-section-title">Payment Method</h3>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <button type="button" class="disc-card" id="pay-method-online" style="text-align:left; padding:12px;">
+              <div class="disc-card-title">Pay Online</div>
+              <div class="disc-card-subtitle">UPI, Card, Net Banking</div>
+            </button>
+            <button type="button" class="disc-card" id="pay-method-visit" style="text-align:left; padding:12px;">
+              <div class="disc-card-title">Pay at Visit</div>
+              <div class="disc-card-subtitle">Pay consultation fee at the hospital/clinic.</div>
+            </button>
+          </div>
+          <div id="book-payment-error" class="input-error" style="margin-top: 8px; color: #d32f2f; font-size: 0.875rem;"></div>
+        </div>
+
+        <!-- Summary & Confirm -->
+        <div class="fac-section" id="book-summary-section" style="display:none;">
+          <h3 class="fac-section-title">Appointment Summary</h3>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Date:</strong> <span id="summary-date"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Time:</strong> <span id="summary-time"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Patient:</strong> <span id="summary-patient"></span></div>
+          </div>
+          <button type="button" class="doc-prof-btn doc-prof-btn-primary" id="book-confirm-btn" style="margin-top:var(--space-md);">Confirm Appointment</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Appointment Confirmed Screen -->
+  <div id="pat-booking-confirmed" class="discovery-screen" aria-hidden="true">
+    <main class="disc-main" style="display:flex; align-items:center; justify-content:center;">
+      <div class="disc-empty" style="max-width:400px; width:100%;">
+        <div class="success-check" style="margin: 0 auto 24px; color: #2e7d32;">
+          <svg viewBox="0 0 64 64" fill="none" width="64" height="64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M20 33l8 8 16-16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 class="disc-title" style="font-size:1.5rem; margin-bottom:8px;">Appointment Confirmed</h2>
+        <div class="doc-prof-id" id="conf-apt-id" style="margin-bottom:var(--space-lg); font-size:0.875rem;">APT-DEMO-XXXX</div>
+        
+        <div class="fac-section" style="text-align:left; margin-bottom:var(--space-lg);">
+          <div class="disc-card-title" id="conf-doc-name"></div>
+          <div class="disc-card-subtitle" style="color: var(--color-accent-dark); margin-bottom: 8px;" id="conf-doc-spec"></div>
+          <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Date:</strong> <span id="conf-date"></span></div>
+          <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Time:</strong> <span id="conf-time"></span></div>
+          <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Facility:</strong> <span id="conf-fac-name"></span></div>
+          <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Patient:</strong> <span id="conf-patient"></span></div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <button type="button" class="doc-prof-btn doc-prof-btn-primary" id="conf-view-apt-btn">View My Appointments</button>
+          <button type="button" class="doc-prof-btn doc-prof-btn-secondary" id="conf-home-btn">Back to Home</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Appointment Details Screen -->
+  <div id="pat-appointment-details" class="discovery-screen" aria-hidden="true">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="apt-detail-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">Appointment Details</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content">
+        <div class="fac-section">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-md);">
+            <div class="doc-prof-id" id="det-apt-id" style="margin:0;">APT-DEMO-XXXX</div>
+            <div style="font-size:0.75rem; font-weight:600; padding:4px 8px; border-radius:4px; background:#2e7d32; color:#fff;" id="det-status">Confirmed</div>
+          </div>
+          
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary); display:block;">Date & Time</strong> <span id="det-datetime"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary); display:block;">Patient</strong> <span id="det-patient"></span></div>
+          </div>
+        </div>
+
+        <div class="fac-section" id="det-queue-section" style="display:none; background: var(--color-surface); border: 1px solid var(--color-accent-dark); border-radius: var(--radius-md);">
+          <h3 class="fac-section-title" style="color: var(--color-accent-dark); margin-bottom: 12px;">Live Queue</h3>
+          <div style="display:flex; justify-content:space-between; margin-bottom: 12px;">
+            <div>
+              <div style="font-size: 0.75rem; color: var(--color-text-secondary);">Your Token</div>
+              <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-text);" id="det-queue-token">#--</div>
+            </div>
+            <div style="text-align: right;" id="det-queue-now-serving-box">
+              <div style="font-size: 0.75rem; color: var(--color-text-secondary);">Now Serving</div>
+              <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-accent-dark);" id="det-queue-current">#--</div>
+            </div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size: 0.875rem; color: var(--color-text); margin-bottom: 12px;" id="det-queue-ahead-box">
+            <div><strong style="color:var(--color-text-secondary);">Ahead:</strong> <span id="det-queue-ahead">--</span></div>
+            <div><strong style="color:var(--color-text-secondary);">Est. Wait:</strong> <span id="det-queue-wait">--</span></div>
+          </div>
+          <div id="det-queue-not-started" style="display:none; margin: 12px 0; font-size: 0.875rem; color: var(--color-text-secondary);">Token Allocated.<br/>Live tracking will be available on your appointment day.</div>
+          <div style="font-size: 0.875rem; margin-bottom: 12px; font-weight: 600;" id="det-queue-doc-status"></div>
+          <button type="button" class="doc-prof-btn doc-prof-btn-primary" id="det-track-queue-btn">Track Live Queue</button>
+        </div>
+
+        <div class="fac-section">
+          <h3 class="fac-section-title">Doctor</h3>
+          <div class="disc-card-title" id="det-doc-name"></div>
+          <div class="disc-card-subtitle" style="color: var(--color-accent-dark); margin-bottom: 12px;" id="det-doc-spec"></div>
+          <button type="button" class="doc-prof-btn doc-prof-btn-secondary" id="det-view-doc-btn">View Doctor</button>
+        </div>
+
+        <div class="fac-section">
+          <h3 class="fac-section-title">Facility</h3>
+          <div class="disc-card-title" id="det-fac-name" style="margin-bottom: 12px;"></div>
+          <button type="button" class="doc-prof-btn doc-prof-btn-secondary" id="det-view-fac-btn">View Hospital / Clinic</button>
+        </div>
+
+        <div class="fac-section" id="det-payment-section">
+          <h3 class="fac-section-title">Payment</h3>
+          <div style="font-size:1.25rem; font-weight:700; color:var(--color-text); margin-bottom:8px;" id="det-fee"></div>
+          <div style="font-size:0.875rem; color:var(--color-text); margin-bottom:4px;"><strong style="color:var(--color-text-secondary);">Method:</strong> <span id="det-pay-method"></span></div>
+          <div style="font-size:0.875rem; color:var(--color-text); margin-bottom:4px;"><strong style="color:var(--color-text-secondary);">Status:</strong> <span id="det-pay-status"></span></div>
+          <div id="det-refund-msg" style="display:none; font-size:0.875rem; color:var(--color-accent-dark); margin-top:8px; padding-top:8px; border-top:1px solid var(--color-border);"></div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px; margin-top:var(--space-md);">
+          <button type="button" class="doc-prof-btn doc-prof-btn-primary" id="det-reschedule-btn">Reschedule Appointment</button>
+          <button type="button" class="doc-prof-btn doc-prof-btn-secondary" id="det-cancel-btn" style="color:#d32f2f; border-color:#d32f2f;">Cancel Appointment</button>
+        </div>
+      </div>
+    </main>
+    
+    <!-- Cancel Confirmation Modal -->
+    <div id="cancel-modal" style="display:none; position:absolute; inset:0; background:rgba(0,0,0,0.5); z-index:100; align-items:center; justify-content:center;">
+      <div style="background:var(--color-bg); padding:var(--space-lg); border-radius:var(--radius-lg); width:90%; max-width:400px; text-align:center;">
+        <h3 class="disc-title" style="margin-bottom:8px;">Cancel Appointment?</h3>
+        <p style="font-size:0.875rem; color:var(--color-text-muted); margin-bottom:24px;">Are you sure you want to cancel this appointment?</p>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <button type="button" class="doc-prof-btn doc-prof-btn-primary" id="cancel-keep-btn">Keep Appointment</button>
+          <button type="button" class="doc-prof-btn doc-prof-btn-secondary" id="cancel-confirm-btn" style="color:#d32f2f; border-color:#d32f2f;">Cancel Appointment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reschedule Appointment Screen -->
+  <div id="pat-reschedule-appointment" class="discovery-screen" aria-hidden="true">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="resched-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">Reschedule Appointment</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content">
+        <div class="fac-section">
+          <h3 class="fac-section-title">Select New Date</h3>
+          <div class="disc-filters" id="resched-date-list" style="padding: 0; margin-top: 8px;"></div>
+        </div>
+
+        <div class="fac-section" id="resched-time-section" style="display:none;">
+          <h3 class="fac-section-title">Select New Time</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;" id="resched-time-list"></div>
+          <div id="resched-error" class="input-error" style="margin-top: 8px; color: #d32f2f; font-size: 0.875rem;"></div>
+        </div>
+
+        <div class="fac-section" id="resched-summary-section" style="display:none;">
+          <h3 class="fac-section-title">Reschedule Summary</h3>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">Old:</strong> <span id="resched-old-datetime"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary);">New:</strong> <span id="resched-new-datetime"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text); margin-top:8px;" id="resched-doc-name"></div>
+            <div style="font-size:0.875rem; color:var(--color-text);" id="resched-fac-name"></div>
+          </div>
+          <button type="button" class="doc-prof-btn doc-prof-btn-primary" id="resched-confirm-btn" style="margin-top:var(--space-md);">Confirm Reschedule</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Online Payment Screen -->
+  <div id="pat-online-payment" class="discovery-screen" aria-hidden="true">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="payment-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">Secure Payment</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content">
+        <div class="fac-section" style="text-align:center;">
+          <h3 class="fac-section-title">Consultation Fee</h3>
+          <div style="font-size:2rem; font-weight:700; color:var(--color-text); margin:12px 0;" id="payment-amount-display">₹500</div>
+          <div style="font-size:0.875rem; color:var(--color-text-muted);">To complete your appointment booking</div>
+        </div>
+        <div class="fac-section">
+          <h3 class="fac-section-title">Payment Options (Demo)</h3>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <button type="button" class="disc-card payment-opt" style="padding:16px;">UPI</button>
+            <button type="button" class="disc-card payment-opt" style="padding:16px;">Credit / Debit Card</button>
+            <button type="button" class="disc-card payment-opt" style="padding:16px;">Net Banking</button>
+          </div>
+          <button type="button" class="doc-prof-btn doc-prof-btn-primary" id="payment-pay-btn" style="margin-top:var(--space-lg); width:100%;">Pay ₹500 (Prototype)</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Payments / Transaction History Screen -->
+  <div id="pat-my-payments" class="discovery-screen" aria-hidden="true">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="payments-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">Payment History</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content" id="payments-list" style="display:none;">
+        <!-- Payment cards here -->
+      </div>
+      <div class="disc-empty" id="payments-empty">
+        <svg class="disc-empty-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        <h2 class="disc-empty-title">No payments yet</h2>
+        <p class="disc-empty-desc">You have no payment history.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Token Tracking Screen -->
+  <div id="pat-token-tracking" class="discovery-screen" aria-hidden="true">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="track-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">Live Token Tracking</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content">
+        <div class="fac-section" style="text-align: center;">
+          <div class="disc-card-title" id="track-doc-name" style="margin-bottom:4px;"></div>
+          <div class="disc-card-subtitle" id="track-fac-name" style="margin-bottom:8px;"></div>
+          <div style="font-size:0.875rem; color:var(--color-text-secondary);" id="track-datetime"></div>
+        </div>
+
+        <div class="fac-section" style="text-align: center; background: var(--color-surface); padding: 24px 16px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+          <div style="font-size: 1rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Your Token</div>
+          <div style="font-size: 4rem; font-weight: 800; color: var(--color-text); line-height: 1;" id="track-your-token">#--</div>
+          
+          <div id="track-not-started-msg" style="display:none; margin: 24px 0; padding: 16px; border: 1px dashed var(--color-border); border-radius: var(--radius-md); font-size: 0.875rem; color: var(--color-text-secondary);">
+            Live tracking will be available on your appointment day.
+          </div>
+          <div id="track-active-queue-details">
+            <div style="margin: 24px 0; padding: 16px 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+              <div style="font-size: 1.25rem; font-weight: 700; color: var(--color-accent-dark); margin-bottom: 4px;" id="track-status-msg">Waiting for your turn</div>
+              <div style="font-size: 0.875rem; color: var(--color-text-muted);" id="track-doc-status">Doctor is on time</div>
+            </div>
+
+            <div style="display:flex; justify-content: space-around;">
+              <div>
+                <div style="font-size: 0.75rem; color: var(--color-text-secondary); text-transform: uppercase;">Now Serving</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-text);" id="track-now-serving">#--</div>
+              </div>
+              <div>
+                <div style="font-size: 0.75rem; color: var(--color-text-secondary); text-transform: uppercase;">Patients Ahead</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-text);" id="track-patients-ahead">--</div>
+              </div>
+              <div>
+                <div style="font-size: 0.75rem; color: var(--color-text-secondary); text-transform: uppercase;">Est. Wait</div>
+                <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-text);" id="track-est-wait">--</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fac-section" id="track-queue-progress-sec">
+          <h3 class="fac-section-title">Queue Progress</h3>
+          <div style="display:flex; align-items:center; overflow-x: auto; padding-bottom: 12px; gap: 8px;" id="track-progress-bar">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- My Appointments Screen -->
+  <div id="pat-my-appointments" class="discovery-screen" aria-hidden="true">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="appointments-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">My Appointments</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content" id="appointments-list" style="display:none;">
+        <!-- Future appointment cards here -->
+      </div>
+      <div class="disc-empty" id="appointments-empty">
+        <svg class="disc-empty-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <h2 class="disc-empty-title">No appointments yet</h2>
+        <p class="disc-empty-desc">You haven't booked any appointments yet.</p>
+        <button type="button" class="disc-empty-btn" id="appointments-find-doc-btn">Find a Doctor</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- My Profile Screen -->
+  <div id="pat-my-profile" class="discovery-screen" aria-hidden="true">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="profile-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">My Profile</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="doc-prof-hero">
+        <div class="doc-prof-avatar" id="my-profile-avatar" style="overflow:hidden;">
+          <img src="" id="my-profile-img" style="display:none; width:100%; height:100%; object-fit:cover;">
+          <span id="my-profile-initial">P</span>
+        </div>
+        <h1 class="doc-prof-name" id="my-profile-name">Patient Name</h1>
+        <div class="doc-prof-spec" id="my-profile-email">Email</div>
+      </div>
+      <div class="disc-scroll-content">
+        <div class="doc-prof-actions" style="margin-bottom: var(--space-md);">
+          <button type="button" class="doc-prof-btn doc-prof-btn-primary" id="profile-edit-btn">Edit Profile</button>
+          <button type="button" class="doc-prof-btn doc-prof-btn-secondary" id="profile-logout-btn">Log Out</button>
+        </div>
+
+        <div class="fac-section">
+          <h3 class="fac-section-title">Personal Details</h3>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary); display:block; margin-bottom:2px;">Mobile Number</strong> <span id="my-profile-mobile"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary); display:block; margin-bottom:2px;">Date of Birth</strong> <span id="my-profile-dob"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary); display:block; margin-bottom:2px;">Gender</strong> <span id="my-profile-gender"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary); display:block; margin-bottom:2px;">Address / Locality</strong> <span id="my-profile-address"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary); display:block; margin-bottom:2px;">Preferred Language</strong> <span id="my-profile-lang"></span></div>
+          </div>
+        </div>
+
+        <div class="fac-section">
+          <h3 class="fac-section-title">Emergency Contact</h3>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary); display:block; margin-bottom:2px;">Contact Name</strong> <span id="my-profile-emerg-name"></span></div>
+            <div style="font-size:0.875rem; color:var(--color-text);"><strong style="color:var(--color-text-secondary); display:block; margin-bottom:2px;">Contact Number</strong> <span id="my-profile-emerg-phone"></span></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Edit Profile Screen -->
+  <div id="pat-edit-profile" class="discovery-screen" aria-hidden="true" style="z-index: 25;">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="edit-profile-back-btn" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">Edit Profile</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content">
+        <form id="edit-profile-form" style="display:flex; flex-direction:column; gap:var(--space-md);">
+          <div class="input-group">
+            <label class="input-label" for="edit-name">Full Name</label>
+            <div class="input-wrap">
+              <input type="text" class="input-field" id="edit-name" required>
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="edit-mobile">Mobile Number</label>
+            <div class="input-wrap">
+              <input type="tel" class="input-field" id="edit-mobile">
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="edit-email">Email Address</label>
+            <div class="input-wrap">
+              <input type="email" class="input-field" id="edit-email">
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="edit-address">Address / Locality</label>
+            <div class="input-wrap">
+              <input type="text" class="input-field" id="edit-address">
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="edit-lang">Preferred Language</label>
+            <div class="input-wrap">
+              <input type="text" class="input-field" id="edit-lang" placeholder="e.g. English, Hindi">
+            </div>
+          </div>
+          <h3 class="fac-section-title" style="margin-top:var(--space-sm);">Emergency Contact</h3>
+          <div class="input-group">
+            <label class="input-label" for="edit-emerg-name">Contact Name</label>
+            <div class="input-wrap">
+              <input type="text" class="input-field" id="edit-emerg-name">
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="edit-emerg-phone">Contact Number</label>
+            <div class="input-wrap">
+              <input type="tel" class="input-field" id="edit-emerg-phone">
+            </div>
+          </div>
+          
+          <button type="submit" class="doc-prof-btn doc-prof-btn-primary" style="margin-top:var(--space-md);">Save Changes</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- DOCTOR SCREENS INJECTED FOR FUNCTIONALITY -->
+  <div id="doc-appointments-screen" class="discovery-screen" aria-hidden="true" style="z-index: 20;">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="doc-appointments-back" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">Appointments</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content">
+        <h3 class="fac-section-title">Today</h3>
+        <div id="doc-apts-today-list" style="display:flex; flex-direction:column; gap:8px;"></div>
+        <h3 class="fac-section-title" style="margin-top:24px;">Upcoming</h3>
+        <div id="doc-apts-upcoming-list" style="display:flex; flex-direction:column; gap:8px;"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="doc-patients-screen" class="discovery-screen" aria-hidden="true" style="z-index: 20;">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="doc-patients-back" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">My Patients</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content">
+         <div id="doc-patients-list" style="display:flex; flex-direction:column; gap:8px;"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="doc-profile-screen" class="discovery-screen" aria-hidden="true" style="z-index: 20;">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="doc-profile-back" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">My Profile</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content">
+        <div style="text-align:center; margin-bottom:24px;">
+           <img id="doc-prof-screen-img" src="" style="width:80px; height:80px; border-radius:50%; object-fit:cover; display:none; margin:0 auto;">
+           <div id="doc-prof-screen-placeholder" style="width:80px; height:80px; border-radius:50%; background:var(--color-accent-subtle); color:var(--color-accent-dark); display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:bold; margin:0 auto;">D</div>
+           <h2 id="doc-prof-screen-name" style="margin-top:12px; font-size:1.25rem;">Dr. Name</h2>
+           <p id="doc-prof-screen-spec" style="color:var(--color-text-muted);">Specialization</p>
+        </div>
+        <div class="fac-section">
+          <h3 class="fac-section-title">Professional Details</h3>
+          <p><strong>Reg No:</strong> <span id="doc-prof-screen-reg"></span></p>
+          <p><strong>Practice:</strong> <span id="doc-prof-screen-prac"></span></p>
+          <div style="margin-top: 24px;">
+            <button type="button" class="btn-primary" id="doc-prof-edit-btn" style="width: 100%;">Edit Profile</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="doc-patient-details-screen" class="discovery-screen" aria-hidden="true" style="z-index: 30;">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="doc-patient-details-back" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">Patient Details</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content">
+        <div style="text-align:center; margin-bottom:24px;">
+           <div id="doc-pat-det-placeholder" style="width:80px; height:80px; border-radius:50%; background:var(--color-primary-subtle); color:var(--color-primary-dark); display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:bold; margin:0 auto;">P</div>
+           <h2 id="doc-pat-det-name" style="margin-top:12px; font-size:1.25rem;">Patient Name</h2>
+           <p id="doc-pat-det-info" style="color:var(--color-text-muted);"></p>
+        </div>
+        <h3 class="fac-section-title" style="margin-top:24px;">Appointment History</h3>
+        <div id="doc-pat-det-history" style="display:flex; flex-direction:column; gap:8px;"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="doc-appointment-details-screen" class="discovery-screen" aria-hidden="true" style="z-index: 30;">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="doc-apt-details-back" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">Appointment Details</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content">
+        <h2 id="doc-apt-det-pat-name">Patient Name</h2>
+        <div style="margin-top:16px; padding:16px; background:#f9f9f9; border-radius:8px;">
+          <p style="margin-bottom:8px;"><strong>Date:</strong> <span id="doc-apt-det-date"></span></p>
+          <p style="margin-bottom:8px;"><strong>Time:</strong> <span id="doc-apt-det-time"></span></p>
+          <p style="margin-bottom:8px;"><strong>Token:</strong> <span id="doc-apt-det-token"></span></p>
+          <p style="margin-bottom:8px;"><strong>Status:</strong> <span id="doc-apt-det-status"></span></p>
+          <p style="margin-bottom:8px;"><strong>Payment Method:</strong> <span id="doc-apt-det-pay-method"></span></p>
+          <p style="margin-bottom:8px;"><strong>Payment Status:</strong> <span id="doc-apt-det-pay-status"></span></p>
+          <p style="margin-bottom:0;"><strong>ID:</strong> <span id="doc-apt-det-id" style="font-family:monospace;"></span></p>
+        </div>
+        <div id="doc-apt-det-actions" style="margin-top:24px; display:flex; flex-direction:column; gap:12px;">
+          <!-- Action buttons injected via JS -->
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="doc-edit-profile-screen" class="discovery-screen" aria-hidden="true" style="z-index: 40;">
+    <header class="disc-header">
+      <div class="disc-header-top">
+        <button type="button" class="disc-back-btn" id="doc-edit-profile-back" aria-label="Go back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="disc-header-info">
+          <h1 class="disc-title">Edit Profile</h1>
+        </div>
+      </div>
+    </header>
+    <main class="disc-main">
+      <div class="disc-scroll-content">
+        <form id="doc-edit-profile-form" onsubmit="return false;">
+          
+          <div style="text-align:center; margin-bottom:24px;">
+            <div class="photo-preview" id="doc-edit-photo-preview" style="width: 100px; height: 100px; margin: 0 auto 12px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+              <img id="doc-edit-photo-img" src="" alt="Profile photo" style="display:none; width: 100%; height: 100%; object-fit: cover;">
+              <span id="doc-edit-photo-placeholder" style="font-size: 2.5rem; color: #aaa;">D</span>
+            </div>
+            <button type="button" id="doc-edit-photo-btn" class="btn-text">Change Photo</button>
+            <input type="file" id="doc-edit-photo-input" accept="image/*" hidden>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="doc-edit-name">Doctor Name</label>
+            <input type="text" id="doc-edit-name" class="input-field" required>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="doc-edit-spec">Specialization</label>
+            <input type="text" id="doc-edit-spec" class="input-field" required>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="doc-edit-reg">Medical Registration Number</label>
+            <input type="text" id="doc-edit-reg" class="input-field" disabled style="background:#f9f9f9; color:#666;" title="Verification required to change Registration Number">
+            <small style="color:var(--color-text-muted); font-size:0.75rem;">Verification required to change</small>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="doc-edit-phone">Phone / Contact</label>
+            <input type="tel" id="doc-edit-phone" class="input-field">
+          </div>
+
+          <h3 class="fac-section-title" style="margin:24px 0 16px;">Practice Information</h3>
+
+          <div class="input-group">
+            <label class="input-label" for="doc-edit-fac">Hospital / Clinic Name</label>
+            <input type="text" id="doc-edit-fac" class="input-field">
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="doc-edit-prac-type">Practice Type</label>
+            <select id="doc-edit-prac-type" class="input-field select-native">
+              <option value="Clinic">Clinic</option>
+              <option value="Hospital">Hospital</option>
+              <option value="Teleconsultation">Teleconsultation</option>
+            </select>
+          </div>
+          
+          <div class="input-group">
+            <label class="input-label" for="doc-edit-address">Address / Location</label>
+            <input type="text" id="doc-edit-address" class="input-field">
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="doc-edit-fee">Consultation Fee (₹)</label>
+            <input type="number" id="doc-edit-fee" class="input-field">
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="doc-edit-hours">Working Hours</label>
+            <input type="text" id="doc-edit-hours" class="input-field" placeholder="e.g. Mon-Sat, 9AM-5PM">
+          </div>
+
+          <div style="margin-top: 32px; margin-bottom: 24px;">
+            <button type="submit" class="btn-primary" id="doc-edit-save-btn" style="width: 100%;">Save Changes</button>
+          </div>
+
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="registration.js"></script>
+  <script src="patient-registration.js"></script>
+  <script src="patient-dashboard.js"></script>
+  <script src="doctor-dashboard.js"></script>
+  <script src="patient-discovery.js"></script>
+  <script src="patient-booking.js"></script>
+</body>
+</html>

@@ -1,0 +1,901 @@
+/* ============================================
+   Doctor Link — Styles
+   ============================================ */
+
+/* --- Design Tokens --- */
+:root {
+  /* Camel-toned accent palette */
+  --color-accent: #c4956a;
+  --color-accent-light: #d4ad8a;
+  --color-accent-dark: #a87b52;
+  --color-accent-subtle: #f5ede6;
+
+  /* Neutrals */
+  --color-bg: #ffffff;
+  --color-surface: #f8f7f5;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #5c5c5c;
+  --color-text-muted: #8a8a8a;
+  --color-border: #e5e2dd;
+
+  /* Feedback */
+  --color-selected-bg: #faf6f2;
+  --color-selected-border: var(--color-accent);
+
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 2px 8px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-card-active: 0 1px 2px rgba(0, 0, 0, 0.06);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+}
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   Launch Screen
+   ============================================ */
+.launch-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+}
+
+.launch-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: launch-enter 0.7s var(--ease-out) 0.15s forwards;
+}
+
+.launch-logo {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+}
+
+.logo-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.launch-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.launch-tagline {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  letter-spacing: 0.01em;
+}
+
+/* Launch exit */
+.launch-screen.exit {
+  animation: launch-exit 0.5s var(--ease-in-out) forwards;
+}
+
+@keyframes launch-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes launch-exit {
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+/* ============================================
+   Role Selection Screen
+   ============================================ */
+.role-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-slow) var(--ease-out);
+}
+
+.role-screen.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- Header --- */
+.role-header {
+  padding: var(--space-lg) var(--space-xl);
+  display: flex;
+  align-items: center;
+}
+
+.role-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.role-brand-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--color-accent);
+}
+
+.role-brand-name {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+/* --- Main --- */
+.role-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  gap: var(--space-2xl);
+}
+
+/* Prompt */
+.role-prompt {
+  text-align: center;
+  max-width: 400px;
+}
+
+.role-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.role-subheading {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+}
+
+/* Stagger entrance for role screen contents */
+.role-screen.visible .role-prompt {
+  animation: role-fade-up 0.5s var(--ease-out) 0.05s both;
+}
+
+.role-screen.visible .role-choices {
+  animation: role-fade-up 0.5s var(--ease-out) 0.15s both;
+}
+
+@keyframes role-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Role Choices --- */
+.role-choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* --- Role Card --- */
+.role-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl) var(--space-lg);
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out),
+    background-color var(--duration-normal) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+  box-shadow: var(--shadow-card);
+  font-family: inherit;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.role-card:hover {
+  border-color: var(--color-accent-light);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.role-card:active {
+  transform: scale(0.985);
+  box-shadow: var(--shadow-card-active);
+}
+
+.role-card:focus-visible {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-subtle);
+}
+
+/* Selected state */
+.role-card.selected {
+  border-color: var(--color-accent);
+  background: var(--color-selected-bg);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Icon */
+.role-card-icon-wrap {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-subtle);
+  color: var(--color-accent-dark);
+  transition: background-color var(--duration-normal) var(--ease-out),
+              color var(--duration-normal) var(--ease-out);
+}
+
+.role-card.selected .role-card-icon-wrap {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.role-card-icon {
+  width: 32px;
+  height: 32px;
+}
+
+/* Label */
+.role-card-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+/* Description */
+.role-card-desc {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+/* Check indicator */
+.role-card-check {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  background: transparent;
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    background-color var(--duration-normal) var(--ease-out),
+    color var(--duration-normal) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.role-card-check svg {
+  width: 14px;
+  height: 14px;
+}
+
+.role-card.selected .role-card-check {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: #ffffff;
+  transform: scale(1);
+  animation: check-pop 0.3s var(--ease-out);
+}
+
+@keyframes check-pop {
+  0% { transform: scale(0.5); }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* --- Footer --- */
+.role-footer {
+  padding: var(--space-lg) var(--space-xl);
+  text-align: center;
+}
+
+.role-footer p {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* ============================================
+   Responsive — Desktop
+   ============================================ */
+@media (min-width: 640px) {
+  .launch-logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .launch-title {
+    font-size: 2rem;
+  }
+
+  .role-heading {
+    font-size: 1.75rem;
+  }
+
+  .role-choices {
+    flex-direction: row;
+    max-width: 560px;
+  }
+
+  .role-card {
+    flex: 1;
+    padding: var(--space-2xl) var(--space-xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .role-choices {
+    max-width: 620px;
+    gap: var(--space-lg);
+  }
+
+  .role-card {
+    padding: var(--space-3xl) var(--space-xl);
+  }
+
+  .role-card-icon-wrap {
+    width: 64px;
+    height: 64px;
+  }
+
+  .role-card-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* ============================================
+   Accessibility — Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .launch-content {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .launch-screen.exit {
+    animation-duration: 0.01ms;
+  }
+
+  .role-screen.visible .role-prompt,
+  .role-screen.visible .role-choices {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .role-card.selected .role-card-check {
+    animation: none;
+  }
+
+  .role-card {
+    transition-duration: 0.01ms;
+  }
+}
+
+/* ============================================
+   Authentication Screen
+   ============================================ */
+
+/* --- Screen Layout --- */
+.auth-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  overflow-y: auto;
+  transition: opacity var(--duration-slow) var(--ease-out),
+              visibility var(--duration-slow);
+}
+
+.auth-screen.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* --- Auth Header --- */
+.auth-header {
+  padding: var(--space-md) var(--space-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: var(--color-bg);
+  z-index: 1;
+}
+
+.auth-back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--space-sm) var(--space-md);
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: color var(--duration-fast) var(--ease-out),
+              background-color var(--duration-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+  margin-left: calc(-1 * var(--space-sm));
+}
+
+.auth-back:hover {
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.auth-back:active {
+  background: var(--color-accent-subtle);
+}
+
+.auth-back:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.auth-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.auth-brand-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-accent);
+}
+
+.auth-brand-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+/* --- Auth Main --- */
+.auth-main {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--space-md) var(--space-xl);
+  padding-bottom: var(--space-3xl);
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Container entrance animation */
+.auth-screen.visible .auth-container {
+  animation: auth-container-enter 0.45s var(--ease-out) 0.05s both;
+}
+
+@keyframes auth-container-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Auth Heading --- */
+.auth-heading {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.auth-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.auth-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+/* --- Auth Forms --- */
+.auth-form {
+  display: none;
+}
+
+.auth-form.active {
+  display: block;
+  animation: auth-form-enter 0.3s var(--ease-out) both;
+}
+
+@keyframes auth-form-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Input Group --- */
+.input-group {
+  margin-bottom: var(--space-md);
+}
+
+.input-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-field {
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--space-md);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  background: var(--color-bg);
+  transition: border-color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: var(--color-text-muted);
+}
+
+.input-field:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-subtle);
+}
+
+/* Error state */
+.input-field.error {
+  border-color: #d94a4a;
+}
+
+.input-field.error:focus {
+  box-shadow: 0 0 0 3px rgba(217, 74, 74, 0.12);
+}
+
+.input-error {
+  display: block;
+  font-size: 0.75rem;
+  color: #d94a4a;
+  margin-top: 4px;
+  min-height: 0;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.input-error.visible {
+  opacity: 1;
+}
+
+/* --- Password Toggle --- */
+.input-wrap--has-toggle .input-field {
+  padding-right: 48px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  transition: color var(--duration-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.password-toggle:hover {
+  color: var(--color-text-secondary);
+}
+
+.password-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+/* --- Auth Options (Forgot password) --- */
+.auth-options {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--space-lg);
+  margin-top: calc(-1 * var(--space-xs));
+}
+
+.forgot-link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-accent-dark);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.forgot-link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* --- Primary Button --- */
+.btn-primary {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-dark);
+  box-shadow: 0 2px 8px rgba(196, 149, 106, 0.3);
+}
+
+.btn-primary:active {
+  transform: scale(0.985);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-accent-dark);
+  outline-offset: 2px;
+}
+
+/* --- Auth Divider --- */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin: var(--space-xl) 0;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.auth-divider span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- Social Buttons --- */
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.btn-social {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out),
+              background-color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-social:hover {
+  background: var(--color-surface);
+  border-color: var(--color-accent-light);
+}
+
+.btn-social:active {
+  background: var(--color-accent-subtle);
+}
+
+.btn-social:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* --- Auth Switch --- */
+.auth-switch {
+  text-align: center;
+  margin-top: var(--space-xl);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.auth-switch a {
+  color: var(--color-accent-dark);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.auth-switch a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* --- Auth Footer --- */
+.auth-footer {
+  padding: var(--space-lg) var(--space-xl);
+  text-align: center;
+}
+
+.auth-footer p {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* ============================================
+   Responsive — Desktop (Auth additions)
+   ============================================ */
+@media (min-width: 640px) {
+  .auth-title {
+    font-size: 1.75rem;
+  }
+
+  .auth-main {
+    align-items: center;
+    padding-top: var(--space-xl);
+  }
+}
+
+/* ============================================
+   Accessibility — Reduced Motion (Auth additions)
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .auth-screen {
+    transition-duration: 0.01ms;
+  }
+
+  .auth-form.active {
+    animation: none;
+  }
+
+  .auth-screen.visible .auth-container {
+    animation: none;
+  }
+}
